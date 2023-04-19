@@ -12,3 +12,4 @@ class CourseAdmin(admin.ModelAdmin):
 admin.site.register(Course, CourseAdmin)
 admin.site.register(category)
 admin.site.register(level)
+admin.site.register(skills)

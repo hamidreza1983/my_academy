@@ -13,11 +13,20 @@ class level(models.Model):
     def __str__(self):
         return self.level
 
+class skills(models.Model):
+    teacher_skills = models.CharField(max_length=120)
+    
+    def __str__(self):
+        return self.teacher_skills
+
+
 class Course(models.Model):
     image = models.ImageField(upload_to = 'course', default= 'default.jpg')
     name = models.CharField(max_length=120)
     detaits = models.TextField()
+    content = models.TextField()
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    teacher_resume = models.TextField()
     price = models.IntegerField(default=0)
     counted_views = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now=True)
@@ -26,6 +35,8 @@ class Course(models.Model):
     status = models.BooleanField(default=False)
     category = models.ManyToManyField(category)
     level_course = models.ManyToManyField(level)
+    skills = models.ManyToManyField(skills)
+    available_sits = models.IntegerField(default=0)
 
     class Meta:
 
@@ -34,4 +45,4 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-# Create your models here.
+
