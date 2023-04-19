@@ -9,4 +9,6 @@ def course(req):
     context = {
         'course' : course
     }
+    for cr in course:
+        print (cr.image)
     return render(req, 'course/courses.html', context=context)

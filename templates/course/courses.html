@@ -26,16 +26,16 @@
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   {% for cat in cr.category.all %}
-                  <h4>{{cat.name}}</h4>
+                  <h4>{{cat.name}} <p>{{cr.price}}</p></h4>
                   {% endfor %}
-                  <p>{{cr.price}}</p>
+                  
                 </div>
-
+                
                 <h3><a href="course-details.html">{{cr.name}}</a></h3>
                 <p>{{cr.detaits}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src={{cr.teacher.user_image.url}} class="img-fluid" alt="">
+                    <img src={{cr.teacher.userimage.url}} class="img-fluid" alt="">
                     <span>{{cr.teacher}}</span>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
