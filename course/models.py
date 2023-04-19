@@ -18,6 +18,7 @@ class Course(models.Model):
     name = models.CharField(max_length=120)
     detaits = models.TextField()
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.IntegerField(default=0)
     counted_views = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(null=True)

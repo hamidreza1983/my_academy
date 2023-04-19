@@ -26,11 +26,12 @@
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   {% for cat in cr.category.all %}
-                  <h4>{{cat.name}} <p>{{cr.price}}</p></h4>
+                  <h4>{{cat.name}}</h4>
+                  <p>{{cr.price}}</p>
                   {% endfor %}
                   
                 </div>
-                
+
                 <h3><a href="course-details.html">{{cr.name}}</a></h3>
                 <p>{{cr.detaits}}</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
