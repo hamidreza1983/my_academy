@@ -45,4 +45,15 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+class RegisterUser(models.Model):
+    name = models.CharField(max_length=120)
+    family = models.CharField(max_length=120)
+    phone = models.CharField(max_length=120)
+    code = models.CharField(max_length=10)
+    course_name = models.CharField(max_length=120)
+    created_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-created_date']
+    def __str__(self):
+        return self.name

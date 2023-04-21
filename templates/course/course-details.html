@@ -42,8 +42,18 @@
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Schedule</h5>
+              <h5>Start time</h5>
               <p>{{course.published_date}}</p>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Register</h5>
+              <a href="{% url 'course:register' %}"><p>click on link for register</p></a>
+            {% else %}
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Register</h5>
+              <a href="{% url 'accounts:login' %}"><p>for register first login</p></a>
+            {% endif %}
             </div>
 
           </div>

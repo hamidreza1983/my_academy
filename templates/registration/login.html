@@ -20,8 +20,10 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
             </div>           
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" >Login</button><br>
+        <a href="{% url 'password_reset' %}" style="color:blue;">Forgot Password</a>
     </div>
+    
 </form>
 
 {% endblock 'content' %}

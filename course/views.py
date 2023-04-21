@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Course
+from .forms import RegisterForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -24,3 +26,16 @@ def course_detail(req, pid=None):
         'course' : course
     }
     return render(req, 'course/course-details.html', context=context)
+
+
+def register(req):
+    if req.method == 'GET':
+        form = RegisterForm()
+        return render(req, 'course/register.html', {'form': form})
+    elif req.method == 'POST':
+        form = RegisterForm(req.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(req, messages.SUCCESS, 'REGISTER SUCCESSFULL : call with you as soon')
+            return redirect('/course/')
+        

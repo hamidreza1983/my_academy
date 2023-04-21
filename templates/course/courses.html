@@ -53,4 +53,8 @@
     </section><!-- End Courses Section -->
 
   </main><!-- End #main -->
+
+{% for message in messages %}
+  <h3>{{message}}</h3>
+{% endfor %}
 {% endblock 'content' %}

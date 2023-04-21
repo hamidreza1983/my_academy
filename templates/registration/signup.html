@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block 'title'%}signup{% endblock 'title' %}
+{% block 'content' %}
+
+
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    </div>
+</section>
+<form action="{% url 'accounts:signup' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <h3>signup form</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="uname"><b>Username</b></label><br>
+                <input type="text" placeholder="Enter Username" name="username" required><br>
+
+                <label for="psw"><b>email</b></label><br>
+                <input type="email" placeholder="Enter emaild" name="email" required><br>
+
+                <label for="psw"><b>password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="password1" required><br>
+
+                <label for="psw"><b>rewrite password</b></label><br>
+                <input type="password" placeholder="Enter Password again" name="password2" required><br>
+            </div>           
+        </div>
+        <button type="submit" >Signup</button><br>
+    </div>
+    
+</form>
+
+{% endblock 'content' %}

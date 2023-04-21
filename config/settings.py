@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'course',
     'accounts',
     'crispy_forms',
+    'crispy_bootstrap4',
 ]
-CRISPY_TEMPLATE_PACK = 'Bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

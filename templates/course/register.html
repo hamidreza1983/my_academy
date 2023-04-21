@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block 'title'%}Login{% endblock 'title' %}
+{% load crispy_forms_tags %}
+{% block 'title'%}register{% endblock 'title' %}
 {% block 'content' %}
 
 
@@ -7,6 +8,9 @@
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     </div>
 </section>
-<h2>we send and email for you . check your inbox and confirm your reset password request</h2>
-
+<form method='post' action="{% url 'course:register' %}">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit">register</button>
+</form>
 {% endblock 'content' %}
