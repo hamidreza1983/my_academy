@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block 'title'%}Login{% endblock 'title' %}
+{% block 'content' %}
+
+
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    </div>
+</section>
+<form action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <h3>Login form</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required><br>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+            </div>           
+        </div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+
+{% endblock 'content' %}

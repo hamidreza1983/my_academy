@@ -4,8 +4,13 @@ from .models import Course
 # Create your views here.
 
 
-def course(req):
+def course(req, ctgr=None, teacher=None):
     course = Course.objects.filter(status=True)
+    if ctgr:
+        course = course.filter(category__name=ctgr)
+    
+    if teacher:
+        course = course.filter(teacher__username=teacher)
     context = {
         'course' : course
     }
