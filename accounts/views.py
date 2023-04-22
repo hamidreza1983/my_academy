@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.urls import reverse
+from .forms import CaptchaForm
 
     
 def Logout(req):
@@ -14,27 +15,42 @@ def Logout(req):
     return redirect('/')
 
 def Signup(req):
-    if not req.user.is_authenticated:
-        if req.method == "POST":
-            form = UserCreationForm(req.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('/')
-            else:
-                messages.add_message(req, messages.ERROR, 'compelet all fileds and strong password')
-        form = UserCreationForm()
-        context = {
-            'form' : form
+    if req.method == 'POST':
+        captcha = CaptchaForm(req.POST)
+        if captcha.is_valid():
+            pass
+        else:
+            captcha = CaptchaForm()
+            form = UserCreationForm()
+            messages.add_message(req, messages.ERROR, 'captcha is incorrect')
+            return render(req, 'registration/signup.html', {'form': form, 'captcha': captcha})
+        
+    if req.method == "POST":
+        form = UserCreationForm(req.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            messages.add_message(req, messages.ERROR, 'compelet all fileds and strong password or set captcha')
+    form = UserCreationForm()
+    captcha = CaptchaForm()
+    context = {
+        'form' : form,
+        'captcha' : captcha,
         }
-        return render(req, 'registration/signup.html',context=context)
-    return redirect('/')
+    return render(req, 'registration/signup.html',context=context)
 
 def Login(req):
-    if req.user.is_authenticated:
-        return redirect('/')
-    if req.method == 'GET':
-        form = AuthenticationForm()
-        return render(req, 'registration/login.html', {'form': form})
+    if req.method == 'POST':
+        captcha = CaptchaForm(req.POST)
+        if captcha.is_valid():
+            pass
+        else:
+            captcha = CaptchaForm()
+            form = AuthenticationForm()
+            messages.add_message(req, messages.ERROR, 'captcha is incorrect')
+            return render(req, 'registration/login.html', {'form': form, 'captcha': captcha})
+
     if req.method == 'POST':
         form = AuthenticationForm(request=req, data=req.POST)
         user = req.POST['username']
@@ -46,13 +62,15 @@ def Login(req):
                 login(req,user)
                 return HttpResponseRedirect(reverse('home:home'))
             else:
-                messages.add_message(req, messages.ERROR, 'username/email or password is incorrect')
-                return HttpResponseRedirect(reverse('accounts:login'))
+                messages.add_message(req, messages.ERROR, 'username/email is incorrect')
         else:
             user = authenticate(username=user, password=password)
             if user is not None:
                 login(req,user)
                 return HttpResponseRedirect(reverse('home:home'))
             else:
-                messages.add_message(req, messages.ERROR, 'username/email or password is incorrect')
-                return redirect('/accounts')
+                messages.add_message(req, messages.ERROR, 'username/email is incorrect')
+    
+    form = AuthenticationForm()
+    captcha = CaptchaForm()
+    return render(req, 'registration/login.html', {'form': form, 'captcha': captcha})

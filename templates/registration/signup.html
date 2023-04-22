@@ -23,12 +23,17 @@
                 <input type="password" placeholder="Enter Password" name="password1" required><br>
 
                 <label for="psw"><b>rewrite password</b></label><br>
-                <input type="password" placeholder="Enter Password again" name="password2" required><br>
+                <input type="password" placeholder="Enter Password again" name="password2" required><br><br>
+                {{captcha}}<br><br>
             </div>           
         </div>
         <button type="submit" >Signup</button><br>
     </div>
     
+    
 </form>
+{% for message in messages %}
+    {{message}}
+{% endfor %}
 
 {% endblock 'content' %}

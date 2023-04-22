@@ -13,15 +13,19 @@
         <h3>Login form</h3>
         <div class="row">
             <div class="col-md-4">
-                <label for="uname"><b>Username</b></label>
+                <label for="uname"><b>Username</b></label><br>
                 <input type="text" placeholder="Enter Username" name="username" required><br>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="psw"><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="password" required><br><br>
+                {{captcha}}<br><br>
             </div>           
         </div>
         <button type="submit" >Login</button><br>
         <a href="{% url 'password_reset' %}" style="color:blue;">Forgot Password</a>
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
     </div>
     
 </form>
