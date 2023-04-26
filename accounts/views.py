@@ -15,28 +15,26 @@ def Logout(req):
     return redirect('/')
 
 def Signup(req):
-    if req.method == 'POST':
-        captcha = CaptchaForm(req.POST)
-        if captcha.is_valid():
-            pass
-        else:
-            captcha = CaptchaForm()
-            form = UserCreationForm()
-            messages.add_message(req, messages.ERROR, 'captcha is incorrect')
-            return render(req, 'registration/signup.html', {'form': form, 'captcha': captcha})
-        
+#    if req.method == 'POST':
+#        captcha = CaptchaForm(req.POST)
+#        if captcha.is_valid():
+#            pass
+#        else:
+#            captcha = CaptchaForm()
+#            form = UserCreationForm()
+#            messages.add_message(req, messages.ERROR, 'captcha is incorrect')
+#            return render(req, 'registration/signup.html', {'form': form, 'captcha': captcha})
+#        
     if req.method == "POST":
         form = UserCreationForm(req.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/course')
         else:
-            messages.add_message(req, messages.ERROR, 'compelet all fileds and strong password or set captcha')
+            messages.add_message(req, messages.ERROR, '...! لطفا تمام فیلد ها را کامل و یا پسوردی قوی تر انتخاب نمایید ')
     form = UserCreationForm()
-    captcha = CaptchaForm()
     context = {
         'form' : form,
-        'captcha' : captcha,
         }
     return render(req, 'registration/signup.html',context=context)
 
@@ -48,7 +46,7 @@ def Login(req):
         else:
             captcha = CaptchaForm()
             form = AuthenticationForm()
-            messages.add_message(req, messages.ERROR, 'captcha is incorrect')
+            messages.add_message(req, messages.ERROR, 'کد امنیتی صحیح نمیباشد')
             return render(req, 'registration/login.html', {'form': form, 'captcha': captcha})
 
     if req.method == 'POST':
@@ -62,14 +60,14 @@ def Login(req):
                 login(req,user)
                 return HttpResponseRedirect(reverse('home:home'))
             else:
-                messages.add_message(req, messages.ERROR, 'username/email is incorrect')
+                messages.add_message(req, messages.ERROR, 'نام کاربری یا کلمه عبور اشتباه است')
         else:
             user = authenticate(username=user, password=password)
             if user is not None:
                 login(req,user)
                 return HttpResponseRedirect(reverse('home:home'))
             else:
-                messages.add_message(req, messages.ERROR, 'username/email is incorrect')
+                messages.add_message(req, messages.ERROR, 'نام کاربری یا کلمه عبور اشتباه است')
     
     form = AuthenticationForm()
     captcha = CaptchaForm()

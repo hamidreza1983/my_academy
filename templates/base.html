@@ -58,7 +58,7 @@
                     <li><a href="{% url 'home:contact' %}" style="font-family:B Zar;font-weight:bold;">تماس با ما</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a href={% url 'password_change' %} style="font-family:B Zar;font-weight:bold;">تغییر کلمه عبور</a></li>
-                        <li><a href="{% url 'accounts:logout' %} style="font-family:B Zar;font-weight:bold;"">خروج</a></li>
+                        <li><a href="{% url 'accounts:logout' %}" style="font-family:B Zar;font-weight:bold;">خروج</a></li>
                         <li><a href="#">Hi {{user.username}}</a></li>
                     {% else %}
                         <li><a href="{% url 'accounts:login' %}" style="font-family:B Zar;font-weight:bold;">ورود</a></li>
@@ -72,8 +72,10 @@
 
         </div>
     </header><!-- End Header -->
+    
     {% block 'content' %}
     {% endblock 'content' %}
+    <br>
     <!-- ======= Footer ======= -->
     <footer id="footer">
 

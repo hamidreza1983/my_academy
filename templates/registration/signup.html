@@ -9,31 +9,33 @@
 </section>
 <form action="{% url 'accounts:signup' %}" method="post">
     {% csrf_token %}
-    <div class="container">
-        <h3>signup form</h3>
+    <div class="container" >
+        
         <div class="row">
-            <div class="col-md-4">
-                <label for="uname"><b>Username</b></label><br>
-                <input type="text" placeholder="Enter Username" name="username" required><br>
+            <div class="col-md-12" style="font-family:B Zar;color:brown;font-weight:bold" align="right">
+                <br><h3 style="font-family:B Zar;color:green;font-weight:bold" align="right">فرم ثبت نام</h3><br>
+                <label for="uname"><b>نام کاربری</b></label><br>
+                <input type="text"  name="username" required><br>
 
-                <label for="psw"><b>email</b></label><br>
-                <input type="email" placeholder="Enter emaild" name="email" required><br>
+                <label for="psw"><b>ایمیل</b></label><br>
+                <input type="email"  name="email" required><br>
 
-                <label for="psw"><b>password</b></label><br>
-                <input type="password" placeholder="Enter Password" name="password1" required><br>
+                <label for="psw"><b>کلمه عبور</b></label><br>
+                <input type="password"  name="password1" required><br>
 
-                <label for="psw"><b>rewrite password</b></label><br>
-                <input type="password" placeholder="Enter Password again" name="password2" required><br><br>
-                {{captcha}}<br><br>
+                <label for="psw"><b>تکرار کلمه عبور</b></label><br>
+                <input type="password"  name="password2" required><br><br>
+                <button type="submit" class="btn btn-primary" >   ثبت نام   </button><br><br>
+                {% for message in messages %}
+                <h4 style="font-family:B Zar;color:red" align="right">{{message}}</h4>
+                {% endfor %}
             </div>           
         </div>
-        <button type="submit" >Signup</button><br>
+        
     </div>
     
     
 </form>
-{% for message in messages %}
-    {{message}}
-{% endfor %}
+
 
 {% endblock 'content' %}
