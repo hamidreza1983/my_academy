@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row wrapper border-bottom white-bg page-heading">
-            <div class="col-lg-10">
-                <h2>site on maintenance . comback as soon</h2>
-            </div>
-        </div>
+{% extends 'base.html' %}
+{% block 'title'%}Login{% endblock 'title' %}
+{% block 'content' %}
+<div class="container" >
+    <div class="row" style="border: 2px solid black;
+    margin: 25px 50px 75px;" align="center">
+        <h4 style="font-family:B Titr;color:red;">سایت در حال بروزرسانی میباشد</h4>
+        <h4 style="font-family:B Titr;color:red;">...! از اینکه صبور هستید تشکر میکنیم</h4>
     </div>
-</body>
-</html>
+</div>
+
+{% endblock 'content' %}
