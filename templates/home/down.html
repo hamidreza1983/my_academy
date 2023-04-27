@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}done{% endblock 'title' %}
+{% block 'content' %}
+<div class="container" >
+    <div class="row">
+        <h4 style="font-family:B Zar;color:green;border: 1px solid black;
+        margin: 25px 50px 75px;" align="center"><a href ="{% url 'accounts:login' %}"> ثبت نام شما با موفقیت انجام شد . جهت ورود به سایت کلیک کنید</a></h4>
+    </div>
+</div>
+{% endblock 'content' %}

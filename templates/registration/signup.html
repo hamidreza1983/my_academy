@@ -1,16 +1,9 @@
 {% extends 'base.html' %}
 {% block 'title'%}signup{% endblock 'title' %}
 {% block 'content' %}
-
-
-<section id="hero" class="d-flex justify-content-center align-items-center">
-    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    </div>
-</section>
 <form action="{% url 'accounts:signup' %}" method="post">
     {% csrf_token %}
-    <div class="container" >
-        
+    <div class="container" > 
         <div class="row">
             <div class="col-md-12" style="font-family:B Zar;color:brown;font-weight:bold" align="right">
                 <br><h3 style="font-family:B Zar;color:green;font-weight:bold" align="right">فرم ثبت نام</h3><br>
@@ -26,16 +19,19 @@
                 <label for="psw"><b>تکرار کلمه عبور</b></label><br>
                 <input type="password"  name="password2" required><br><br>
                 <button type="submit" class="btn btn-primary" >   ثبت نام   </button><br><br>
-                {% for message in messages %}
-                <h4 style="font-family:B Zar;color:red" align="right">{{message}}</h4>
-                {% endfor %}
             </div>           
-        </div>
-        
-    </div>
-    
-    
+        </div>       
+    </div>       
 </form>
+<div class="container" >
+    <div class="col-md-11">
+        {% for message in messages %}
+            <h4 style="font-family:B Zar;color:red;border: 1px solid black;
+            margin: 25px 50px 75px;
+            background-color: lightblue;" align="right">{{message}}</h4>
+        {% endfor %}
+    </div>
+</div>
 
 
 {% endblock 'content' %}

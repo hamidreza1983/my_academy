@@ -29,7 +29,7 @@ def Signup(req):
         form = UserCreationForm(req.POST)
         if form.is_valid():
             form.save()
-            return redirect('/course')
+            return render (req, 'home/down.html')
         else:
             messages.add_message(req, messages.ERROR, '...! لطفا تمام فیلد ها را کامل و یا پسوردی قوی تر انتخاب نمایید ')
     form = UserCreationForm()

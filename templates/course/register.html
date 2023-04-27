@@ -2,12 +2,6 @@
 {% load crispy_forms_tags %}
 {% block 'title'%}register{% endblock 'title' %}
 {% block 'content' %}
-
-
-<section id="hero" class="d-flex justify-content-center align-items-center">
-    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    </div>
-</section>
 <form method='post' action="{% url 'course:register' %}">
     {% csrf_token %}
     {{form|crispy}}
